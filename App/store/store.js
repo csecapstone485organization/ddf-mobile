@@ -1,9 +1,6 @@
 import { createStore } from 'redux'
+import rootReducer from '../reducers/reducers'
 
-export const reducer = (state = 0, action) => {
-    return state;
-}
-
-let store = createStore(reducer);
+let store = createStore(rootReducer);
 
 export default store;
