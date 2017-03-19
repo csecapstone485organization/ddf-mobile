@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react'
 import { View, ListView, StyleSheet } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import WorkspaceRow from './WorkspaceRow'
+import store from '../store/store'
+
 
 const WorkspaceSelectionList = ({ onWorkspaceSelection }) => {
   const listData = [
@@ -18,10 +20,10 @@ const WorkspaceSelectionList = ({ onWorkspaceSelection }) => {
     routes: PropTypes.object.isRequired,
   };
 
-  const onPress = () => {
-    console.log("Test");
+  const onPress = (label) => {
     Actions.editQuery()
-    onWorkspaceSelection("default");
+    onWorkspaceSelection(label);
+    console.log(store.getState())
   }
 
   return(
@@ -31,7 +33,7 @@ const WorkspaceSelectionList = ({ onWorkspaceSelection }) => {
         renderRow={
           (rowData) =>
           <WorkspaceRow
-            onPress={onPress}
+            onPress={() => onPress(rowData.label)}
             {...rowData}
           />}
         />
@@ -40,6 +42,9 @@ const WorkspaceSelectionList = ({ onWorkspaceSelection }) => {
 }
 
   WorkspaceSelectionList.propTypes = {
+    // todos: PropTypes.arrayOf(PropTypes.shape({
+    //   label: PropTypes.string.isRequired
+    // }).isRequired).isRequired,
     onWorkspaceSelection: PropTypes.func.isRequired,
     routes: PropTypes.object,
   }
