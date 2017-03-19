@@ -4,6 +4,7 @@ import { Actions, Scene, ActionConst } from 'react-native-router-flux';
 import LaunchScene from '../scenes/LaunchScene';
 import LoginScene from '../scenes/LoginScene';
 import WorkspaceSelectionScene from '../scenes/WorkspaceSelectionScene';
+import QuerySelectionScene from '../scenes/QuerySelectionScene';
 import EditQueryScene from '../scenes/EditQueryScene';
 import ListResultsScene from '../scenes/ListResultsScene';
 import MapResultsScene from '../scenes/MapResultsScene';
@@ -31,6 +32,8 @@ const scenes = Actions.create(
     <Scene key="login" component={LoginScene} title="Login" sceneStyle={style.padForNavBar} />
     <Scene key="workspaceSelection" component={WorkspaceSelectionScene}
       title="Workspace Selection" sceneStyle={style.padForNavBar} />
+    <Scene key="querySelection" component={QuerySelectionScene}
+      title="Query Selection" sceneStyle={style.padForNavBar} />
     <Scene key="launch" component={LaunchScene} title="Launch" sceneStyle={style.padForNavBar} />
     <Scene key="editQuery" component={EditQueryScene} title="Edit Query" sceneStyle={style.padForNavBar} />
     <Scene key="results" title="Query Results"

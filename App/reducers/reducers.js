@@ -2,8 +2,19 @@ import { combineReducers } from 'redux'
 import {
   REQUEST_WORKSPACES, RECEIVE_WORKSPACES,
   SELECT_WORKSPACE, REQUEST_RESULTS,
-  RECEIVE_RESULTS, SELECT_RESULT
+  RECEIVE_RESULTS, SELECT_RESULT,
+  REQUEST_QUERIES, RECEIVE_QUERIES,
+  SELECT_QUERY
 } from '../actions/actions'
+
+function selectedQuery(state = 'default', action) {
+  switch (action.type) {
+    case SELECT_QUERY:
+      return action.query
+    default:
+      return state
+  }
+}
 
 function selectedWorkspace(state = 'default', action) {
   switch (action.type) {
@@ -15,6 +26,7 @@ function selectedWorkspace(state = 'default', action) {
 }
 
 const rootReducer = combineReducers({
+  selectedQuery,
   selectedWorkspace
 })
 

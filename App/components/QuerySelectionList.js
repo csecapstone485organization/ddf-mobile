@@ -1,16 +1,16 @@
 import React, { PropTypes } from 'react'
 import { View, ListView, StyleSheet } from 'react-native'
 import { Actions } from 'react-native-router-flux'
-import WorkspaceRow from './WorkspaceRow'
+import QueryRow from './QueryRow'
 import store from '../store/store'
 
 
-const WorkspaceSelectionList = ({ onWorkspaceSelection }) => {
+const QuerySelectionList = ({ onQuerySelection }) => {
   const listData = [
-    {label:'Workspace 1'},
-    {label:'Workspace 2'},
-    {label:'Workspace 3'},
-    {label:'Workspace 4'},
+    {label:'Query 1', lastRan: new Date(2017, 3, 19, 1, 40, 23, 42)},
+    {label:'Query 2', lastRan: new Date(2017, 3, 19, 1, 39, 58, 693)},
+    {label:'Query 3', lastRan: new Date(2017, 3, 18, 23, 7, 12, 574)},
+    {label:'Query 4', lastRan: new Date(2014, 7, 12, 8, 12, 2, 810)},
   ]
 
   const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
@@ -21,8 +21,8 @@ const WorkspaceSelectionList = ({ onWorkspaceSelection }) => {
   };
 
   const onPress = (label) => {
-    Actions.querySelection()
-    onWorkspaceSelection(label);
+    Actions.editQuery()
+    onQuerySelection(label);
     console.log(store.getState())
   }
 
@@ -32,7 +32,7 @@ const WorkspaceSelectionList = ({ onWorkspaceSelection }) => {
         dataSource={dataSource}
         renderRow={
           (rowData) =>
-          <WorkspaceRow
+          <QueryRow
             onPress={() => onPress(rowData.label)}
             {...rowData}
           />}
@@ -41,11 +41,8 @@ const WorkspaceSelectionList = ({ onWorkspaceSelection }) => {
     )
 }
 
-  WorkspaceSelectionList.propTypes = {
-    // todos: PropTypes.arrayOf(PropTypes.shape({
-    //   label: PropTypes.string.isRequired
-    // }).isRequired).isRequired,
-    onWorkspaceSelection: PropTypes.func.isRequired,
+  QuerySelectionList.propTypes = {
+    onQuerySelection: PropTypes.func.isRequired,
     routes: PropTypes.object,
   }
 
@@ -59,4 +56,4 @@ const WorkspaceSelectionList = ({ onWorkspaceSelection }) => {
     }
   });
 
-  export default WorkspaceSelectionList
+  export default QuerySelectionList
