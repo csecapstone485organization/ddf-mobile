@@ -8,7 +8,7 @@ export default class LoginScene extends Component {
     return (
       <View style={styles.container}>
         <Text>Login Screen</Text>
-        <LoginContainer nextScreen={Actions.editQuery}/>
+        <LoginContainer nextScreen={Actions.workspaceSelection}/>
       </View>
     )
   }
