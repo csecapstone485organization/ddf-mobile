@@ -38,9 +38,9 @@ function queryResults(state, action) {
 
 const rootReducer = combineReducers({
   selectedWorkspace,
-  form
   selectedQuery,
-  selectedWorkspace
+  selectedWorkspace,
+  form
 })
 
 export default rootReducer
