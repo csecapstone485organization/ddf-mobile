@@ -12,7 +12,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return { }
+  return {
+    //TODO: Add request results here
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditQueryForm)

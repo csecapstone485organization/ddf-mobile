@@ -5,14 +5,7 @@ import WorkspaceRow from './WorkspaceRow'
 import store from '../store/store'
 
 
-const WorkspaceSelectionList = ({ onWorkspaceSelection }) => {
-  const listData = [
-    {label:'Workspace 1'},
-    {label:'Workspace 2'},
-    {label:'Workspace 3'},
-    {label:'Workspace 4'},
-  ]
-
+const WorkspaceSelectionList = ({ onWorkspaceSelection, listData }) => {
   const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
   const dataSource = ds.cloneWithRows(listData)
 
@@ -42,9 +35,6 @@ const WorkspaceSelectionList = ({ onWorkspaceSelection }) => {
 }
 
   WorkspaceSelectionList.propTypes = {
-    // todos: PropTypes.arrayOf(PropTypes.shape({
-    //   label: PropTypes.string.isRequired
-    // }).isRequired).isRequired,
     onWorkspaceSelection: PropTypes.func.isRequired,
     routes: PropTypes.object,
   }

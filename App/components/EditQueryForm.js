@@ -1,42 +1,65 @@
 import React from 'react'
-import { Button, View, Text, TextInput, ScrollView, StyleSheet } from 'react-native'
+import { Button, View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
+import { Field, reduxForm } from 'redux-form'
+import store from '../store/store'
 
 type Props = {
+    saveQuery: Function,
+    requestResults: Function,
     nextScreen: Function
 }
 
+const renderInput = ({ input: { onChange, ...restInput }}) => {
+  return <TextInput style={styles.input} onChangeText={onChange} {...restInput} />
+}
+
 const EditQueryForm = (props: Props) => {
-  const { nextScreen } = props
+  const { requestResults, nextScreen } = props
+
+  const onPress = () => {
+    // TODO: Uncomment requestResults; should not run nextScreen until results received
+    // requestResults();
+    nextScreen();
+    console.log(store.getState())
+  }
+
   return (
-    <ScrollView style={styles.listContent}>
-        <Text style={styles.fieldLabel}>Text</Text>
-        <TextInput style={styles.textBox}/>
-        <Text style={styles.fieldLabel}>Time</Text>
-        <TextInput style={styles.textBox}/>
-        <Text style={styles.fieldLabel}>Location</Text>
-        <TextInput style={styles.textBox}/>
-        <Text style={styles.fieldLabel}>Sorting</Text>
-        <TextInput style={styles.textBox}/>
-        <Button
-          onPress={() => nextScreen()}
-          title='Submit Query'
-          accessibilityLabel='Submit Query'>
-          Submit Query
-        </Button>
-    </ScrollView>
+    <View style={styles.container}>
+      <Text>Text:</Text>
+      <Field name="text" component={renderInput} />
+      <Text>Location:</Text>
+      <Field name="location" component={renderInput} />
+      <TouchableOpacity onPress={onPress}>
+        <Text style={styles.button}>Submit</Text>
+      </TouchableOpacity>
+    </View>
   )
 }
 
 
 const styles = StyleSheet.create({
-    fieldLabel: {
-        fontSize: 18
-    },
-    textBox: {
-        alignSelf: 'stretch',
-        width: 100,
-        height: 60
-    }
-});
+  button: {
+    backgroundColor: 'blue',
+    color: 'white',
+    height: 30,
+    lineHeight: 30,
+    marginTop: 10,
+    textAlign: 'center',
+    width: 250
+  },
+  container: {
+
+  },
+  input: {
+    borderColor: 'black',
+    borderWidth: 1,
+    height: 37,
+    width: 250
+  }
+})
+
+EditQueryForm = reduxForm({
+  form: 'queryForm' // a unique name for this form
+})(EditQueryForm);
 
 export default EditQueryForm

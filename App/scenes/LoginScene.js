@@ -6,18 +6,7 @@ import LoginContainer from '../containers/LoginContainer'
 export default class LoginScene extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Login Screen</Text>
-        <LoginContainer nextScreen={Actions.workspaceSelection}/>
-      </View>
+      <LoginContainer nextScreen={Actions.workspaceSelection}/>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-})
