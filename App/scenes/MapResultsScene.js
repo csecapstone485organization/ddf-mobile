@@ -9,7 +9,7 @@ import {
 var {height, width} = Dimensions.get('window');
 import MapView from 'react-native-maps';
 
-export default class testing extends Component {
+export default class MapResultsScene extends Component {
   constructor(props){
     super(props);
     this.state = {
