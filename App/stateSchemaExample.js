@@ -7,10 +7,18 @@
   id:"82c6355618b44f739481d9db98859978"
   metacard.owner:"admin@localhost.local"
   modified:1490216827867
-    queries: 
+    queries:
+    0:
       cql:"("anyText" ILIKE 'cool1.jpg')"
       federation:"enterprise"
       id:"87c3db4f-a23d-4f77-90c0-4fad0e704585"
+      sortField:"modified"
+      sortOrder:"desc"
+      title:"Search Name"
+    1:
+      cql:"("anyText" ILIKE 'cool1.jpg')"
+      federation:"enterprise"
+      id:"5bbce52b-e123-4b6e-bc3e-b1b7a272c3d2"
       sortField:"modified"
       sortOrder:"desc"
       title:"Search Name"
