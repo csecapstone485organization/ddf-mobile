@@ -27,7 +27,7 @@
 
   },
     //basic string only query returned in geojson
-    //send get request with https://localhost:8993/services/catalog/query?q=*&format=geojson
+    //send get request with https://localhost:8993/services/catalog/query?q=cool1.jpg&format=geojson
   query:
   {
     q: cool1.jpg
