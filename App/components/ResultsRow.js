@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 const ResultsRow = (props) => (
   <View style={styles.container}>
     <Text style={styles.text}>
-      {props.label}
+      {props.title}
     </Text>
   </View>
 );

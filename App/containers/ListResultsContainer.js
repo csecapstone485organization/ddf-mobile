@@ -1,23 +1,23 @@
 import React, { Component } from 'react'
-import EditQueryForm from '../components/EditQueryForm'
+import ResultsList from '../components/ResultsList'
 import { fetchResults } from '../actions/actions'
 import { connect } from 'react-redux'
+import store from '../store/store'
 
 type Props = {
   nextScreen: Function
 }
 
 const mapStateToProps = (state) => {
+  console.log(store.getState())
+  console.log("STATE")
   return {
+    listData: state.results.results
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-      fetchResults: (query) => {
-        dispatch(fetchResults(query))
-      }
-    }
+  return {}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditQueryForm)
+export default connect(mapStateToProps, mapDispatchToProps)(ResultsList)
