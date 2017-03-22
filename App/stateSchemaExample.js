@@ -29,6 +29,7 @@
     sorting: 'CLOSEST FIRST'
   }
 
+  //result from cql query on ddf
    "results": [
     {
       "matches": {},
