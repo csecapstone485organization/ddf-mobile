@@ -18,15 +18,14 @@
       }
     ]
   },
+    
+    
+    //basic string only query returned in geojson
+    //send get request with https://localhost:8993/services/catalog/query?q=*&format=geojson
   query:
   {
-    text: 'America\'s Taco ',
-    time: 1439478405547,
-    location: {
-      long: 55,
-      lat: 55
-    },
-    sorting: 'CLOSEST FIRST'
+    q:*
+    format:geojson
   }
 
   //result from cql query on ddf
