@@ -1,6 +1,7 @@
 // Example to demonstrate how state should look in redux store
 
 {
+  //workspaces 
   created:1490216827867
   effective:1490216827867
   id:"82c6355618b44f739481d9db98859978"
@@ -25,7 +26,7 @@
     format:geojson
   }
 
-  //result from cql query on ddf
+  //result from opensearch query on ddf
    "results": [
     {{
   "hits": 1,
