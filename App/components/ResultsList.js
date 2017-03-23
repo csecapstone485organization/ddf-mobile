@@ -1,22 +1,13 @@
 import React, { PropTypes } from 'react'
 import { View, ListView, StyleSheet } from 'react-native'
 import { Actions } from 'react-native-router-flux'
-import WorkspaceRow from './WorkspaceRow'
+import ResultsRow from '../components/ResultsRow'
 import store from '../store/store'
 
+const ResultsList = ({ listData }) => {
 
-const WorkspaceSelectionList = ({ onWorkspaceSelection, listData }) => {
   const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
   const dataSource = ds.cloneWithRows(listData)
-
-  contextTypes = {
-    routes: PropTypes.object.isRequired,
-  };
-
-  const onPress = (label) => {
-    Actions.querySelection()
-    onWorkspaceSelection(label);
-  }
 
   return(
     <View style={styles.container}>
@@ -24,8 +15,7 @@ const WorkspaceSelectionList = ({ onWorkspaceSelection, listData }) => {
         dataSource={dataSource}
         renderRow={
           (rowData) =>
-          <WorkspaceRow
-            onPress={() => onPress(rowData.label)}
+          <ResultsRow
             {...rowData}
           />}
         />
@@ -33,9 +23,8 @@ const WorkspaceSelectionList = ({ onWorkspaceSelection, listData }) => {
     )
 }
 
-  WorkspaceSelectionList.propTypes = {
-    onWorkspaceSelection: PropTypes.func.isRequired,
-    routes: PropTypes.object,
+  ResultsList.propTypes = {
+    listData: PropTypes.array.isRequired
   }
 
   const styles = StyleSheet.create({
@@ -48,4 +37,4 @@ const WorkspaceSelectionList = ({ onWorkspaceSelection, listData }) => {
     }
   });
 
-  export default WorkspaceSelectionList
+  export default ResultsList

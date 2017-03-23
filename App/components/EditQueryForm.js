@@ -5,7 +5,7 @@ import store from '../store/store'
 
 type Props = {
     saveQuery: Function,
-    requestResults: Function,
+    fetchResults: Function,
     nextScreen: Function
 }
 
@@ -14,13 +14,15 @@ const renderInput = ({ input: { onChange, ...restInput }}) => {
 }
 
 const EditQueryForm = (props: Props) => {
-  const { requestResults, nextScreen } = props
+  const { fetchResults, nextScreen } = props
 
   const onPress = () => {
-    // TODO: Uncomment requestResults; should not run nextScreen until results received
-    // requestResults();
+    // TODO: Uncomment fetchResults; should not run nextScreen until results received
+    // fetchResults();
+    console.log(fetchResults);
+    fetchResults("bleh");
+    // Move to async call
     nextScreen();
-    console.log(store.getState())
   }
 
   return (

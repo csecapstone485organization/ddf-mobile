@@ -35,11 +35,26 @@ function selectedResult(state = {}, action) {
   }
 }
 
-function queryResults(state, action) {
+function results(state = {
+  isFetching: false,
+  didInvalidate: false,
+  results: []
+}, action) {
   switch (action.type) {
     case REQUEST_RESULTS:
-      //TODO: Write async call here
-      return;
+      return Object.assign({}, state, {
+        isFetching: true,
+        didInvalidate: false
+      });
+    case RECEIVE_RESULTS:
+      return Object.assign({}, state,
+        {
+        isFetching: false,
+        didInvalidate: false,
+        results: action.results,
+        lastUpdated: action.receivedAt
+      })
+
     default:
       return state;
   }
@@ -50,6 +65,7 @@ const rootReducer = combineReducers({
   selectedQuery,
   selectedWorkspace,
   selectedResult,
+  results,
   form
 })
 
