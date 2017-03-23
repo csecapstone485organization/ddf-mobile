@@ -6,18 +6,10 @@ import EditQueryContainer from '../containers/EditQueryContainer'
 
 const EditQueryScene = (): React$Element<any> => {
   return (
-    <View style={styles.container}>
+    <View>
       <EditQueryContainer nextScreen={Actions.results} />
     </View>
   )
 }
 
 export default EditQueryScene
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-})
