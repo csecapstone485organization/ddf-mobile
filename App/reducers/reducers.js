@@ -4,7 +4,7 @@ import {
   SELECT_WORKSPACE, REQUEST_RESULTS,
   RECEIVE_RESULTS, SELECT_RESULT,
   REQUEST_QUERIES, RECEIVE_QUERIES,
-  SELECT_QUERY, CHANGE_REGION
+  SELECT_QUERY
 } from '../actions/actions'
 import { reducer as form } from 'redux-form'
 
@@ -26,6 +26,15 @@ function selectedWorkspace(state = {}, action) {
   }
 }
 
+function selectedResult(state = {}, action) {
+  switch (action.type) {
+    case SELECT_RESULT:
+      return action.result;
+    default:
+      return state;
+  }
+}
+
 function queryResults(state, action) {
   switch (action.type) {
     case REQUEST_RESULTS:
@@ -36,20 +45,11 @@ function queryResults(state, action) {
   }
 }
 
-function changeRegion(state = {}, action) {
-  switch (action.type) {
-    case CHANGE_REGION:
-      return {...state, 'region': action.region};
-    default:
-      return state;
-  }
-}
-
 const rootReducer = combineReducers({
   selectedWorkspace,
   selectedQuery,
   selectedWorkspace,
-  changeRegion,
+  selectedResult,
   form
 })
 

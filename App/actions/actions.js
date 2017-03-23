@@ -10,8 +10,6 @@ export const REQUEST_RESULTS = 'REQUEST_RESULTS';
 export const RECEIVE_RESULTS = 'RECEIVE_RESULTS';
 export const SELECT_RESULT = 'SELECT_RESULT';
 
-export const CHANGE_REGION = 'CHANGE_REGION';
-
 export function requestWorkspaces(user) {
   return {
     type: REQUEST_WORKSPACES,
@@ -51,12 +49,5 @@ export function selectResult(result) {
   return {
     type: SELECT_RESULT,
     result
-  }
-}
-
-export function changeRegion(region) {
-  return {
-    type: CHANGE_REGION,
-    region
   }
 }

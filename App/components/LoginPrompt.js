@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native'
 
 type Props = {
-    nextScreen: Function
+  nextScreen: Function
 }
 
 const LoginPrompt = (props: Props) => {

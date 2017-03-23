@@ -3,9 +3,15 @@ import { Text, View, ListView, StyleSheet, Dimensions } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import store from '../store/store'
 import MapView from 'react-native-maps';
-var {height, width} = Dimensions.get('window');
+var {height, width} = Dimensions.get('window')
 
-const MapResults = ({ onResultSelection, onRegionChange }) => {
+type Props = {
+  nextScreen: Function
+}
+
+const MapResults = (props: Props, { onResultSelection }) => {
+  const { nextScreen } = props
+
   const mapData = {
     region: {
           latitude: 33.420270,
@@ -51,7 +57,6 @@ const MapResults = ({ onResultSelection, onRegionChange }) => {
 
           //Required to render map
           region={mapData.region}
-          onRegionChange={onRegionChange}
           >
 
           {mapData.markers.map((marker, i) => (
@@ -63,6 +68,7 @@ const MapResults = ({ onResultSelection, onRegionChange }) => {
               //image={marker.image} //Use to create image
               title={marker.title}
               description={marker.description}
+              onCalloutPress={() => nextScreen()}
             />
           ))}
           
@@ -73,7 +79,6 @@ const MapResults = ({ onResultSelection, onRegionChange }) => {
 
   MapResults.propTypes = {
     onResultSelection: PropTypes.func.isRequired,
-    onRegionChange: PropTypes.func.isRequired,
     routes: PropTypes.object,
   }
 
