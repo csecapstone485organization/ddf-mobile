@@ -11,30 +11,33 @@ const LoginPrompt = (props: Props) => {
     <View style={styles.loginContent}>
         <TextInput style={styles.textBox} placeholder={'Username'}/>
         <TextInput style={styles.textBox} placeholder={'Password'}/>
-        <Button onPress={() => nextScreen()}
-          title='Login'
-          accessibilityLabel='Login'>
-          Login
-        </Button>
+        <View style={styles.button}>
+			<Button onPress={() => nextScreen()}
+			title='Login'
+			accessibilityLabel='Login'>
+			Login
+			</Button>
+		</View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-    fieldLabel: {
-        fontSize: 18
-    },
     loginContent: {
         flex: 1,
+		flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        alignSelf: 'stretch'
     },
+	button: {
+		width: 100,
+		height: 30,
+	},
     textBox: {
-        alignSelf: 'stretch',
-        textAlign: 'center',
-        width: 100,
-        height: 60
+		textAlign: 'center',
+        width: 200,
+        height: 80,
+		fontSize: 30
     }
 });
 
