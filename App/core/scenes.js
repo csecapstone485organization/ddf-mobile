@@ -8,6 +8,7 @@ import QuerySelectionScene from '../scenes/QuerySelectionScene';
 import EditQueryScene from '../scenes/EditQueryScene';
 import ListResultsScene from '../scenes/ListResultsScene';
 import MapResultsScene from '../scenes/MapResultsScene';
+import DetailsPageScene from '../scenes/DetailsPageScene';
 
 const style = StyleSheet.create({
         tabBarStyle: {
@@ -36,6 +37,7 @@ const scenes = Actions.create(
       title="Query Selection" sceneStyle={style.padForNavBar} />
     <Scene key="launch" component={LaunchScene} title="Launch" sceneStyle={style.padForNavBar} />
     <Scene key="editQuery" component={EditQueryScene} title="Edit Query" sceneStyle={style.padForNavBar} />
+    <Scene key="detailsPage" component={DetailsPageScene} title="Details" sceneStyle={style.padForNavBar} />
     <Scene key="results" title="Query Results"
         tabs={true} tabBarStyle={style.tabBarStyle}>
         <Scene
