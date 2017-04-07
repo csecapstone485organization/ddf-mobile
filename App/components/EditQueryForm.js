@@ -1,6 +1,7 @@
 import React from 'react'
-import { Button, View, Text, TextInput, Picker, StyleSheet } from 'react-native'
+import { Button, View, Text, TextInput, StyleSheet } from 'react-native'
 import { Field, reduxForm } from 'redux-form'
+import { Select, Option } from "react-native-chooser"
 import store from '../store/store'
 
 type Props = {
@@ -21,43 +22,62 @@ const EditQueryForm = (props: Props) => {
     nextScreen();
   }
 
+
   return (
-  <View style={styles.QueryInputContainer}>
-    <TextInput style={styles.TextInputStyle} placeholder={'Query Text'}/>
-    <Picker>
-      <Picker.Item label="Select Match Case Type" value="0" />
-      <Picker.Item label="Yes" value="yes" />
-      <Picker.Item label="No" value="no" />
-    </Picker>
-    <Picker>
-      <Picker.Item label="Select Time Range Type" value="0" />
-      <Picker.Item label="Any" value="any" />
-      <Picker.Item label="After" value="after" />
-      <Picker.Item label="Before" value="before" />
-      <Picker.Item label="Between" value="between" />
-    </Picker>
-    <Picker>
-      <Picker.Item label="Select Location Type" value="0" />      
-      <Picker.Item label="Anywhere" value="anywhere" />
-      <Picker.Item label="Somewhere Specific" value="somewhereSpecific" />
-    </Picker>
-    <Picker>
-      <Picker.Item label="Select Match Type" value="0" />     
-      <Picker.Item label="Any" value="any" />
-      <Picker.Item label="Specific" value="specific" />
-    </Picker>
-    <Picker>
-      <Picker.Item label="Select Sort Attribute Type" value="0" />        
-    </Picker>
-    <Picker>
-      <Picker.Item label="Select Sort Direction Type" value="0" />        
-    </Picker>
-    <View style={styles.buttons}>
-    <Button onPress={onPress}
-      title='Save'
-      accessibilityLabel='Submit'>
-      Submit
-    </Button>
+  <View style={styles.Container}>
+    <TextInput style={styles.TextInputStyle} placeholder={'Query Text'}/>    
+    <Select
+        //onSelect = {this.onSelect.bind(this)}
+        defaultText  = "Match Case?"
+        style = {styles.Select}
+        textStyle = {{}}
+        backdropStyle  = {{backgroundColor : "#d3d5d6"}}
+        optionListStyle = {{backgroundColor : "#F5FCFF"}}>
+          <Option value = "Yes">Yes</Option>
+          <Option value = "No">No</Option>
+    </Select>  
+    <View style={{height: 50}} />   
+    <Select
+        //onSelect = {this.onSelect.bind(this)}
+        defaultText  = "Time Range?"
+        style = {styles.Select}
+        textStyle = {{}}
+        backdropStyle  = {{backgroundColor : "#d3d5d6"}}
+        optionListStyle = {{backgroundColor : "#F5FCFF"}}>
+          <Option value = "Any">Any</Option>
+          <Option value = "After">After</Option>
+          <Option value = "Before">Before</Option>
+          <Option value = "Between">Between</Option>
+    </Select>
+    <View style={{height: 50}} />
+    <Select
+        //onSelect = {this.onSelect.bind(this)}
+        defaultText  = "Located?"
+        style = {styles.Select}
+        textStyle = {{}}
+        backdropStyle  = {{backgroundColor : "#d3d5d6"}}
+        optionListStyle = {{backgroundColor : "#F5FCFF"}}>
+          <Option value = "Anywhere">Anywhere</Option>
+          <Option value = "Somewhere Specific">Somewhere Specific</Option>
+    </Select>
+    <View style={{height: 50}} />
+    <Select
+        //onSelect = {this.onSelect.bind(this)}
+        defaultText  = "Match Types?"
+        style = {styles.Select}
+        textStyle = {{}}
+        backdropStyle  = {{backgroundColor : "#d3d5d6"}}
+        optionListStyle = {{backgroundColor : "#F5FCFF"}}>
+          <Option value = "Any">Any</Option>
+          <Option value = "Specific">Specific</Option>
+    </Select>
+    <View style={{height: 50}} />
+    <View style={styles.Button}>
+        <Button onPress={onPress}
+            title='Save'
+            accessibilityLabel='Submit'>
+            Submit
+        </Button>
     </View>
     </View>
   )
@@ -65,23 +85,24 @@ const EditQueryForm = (props: Props) => {
 
 
 const styles = StyleSheet.create({
-  QueryInputContainer: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
+  Container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+  },
+  Select: {
+        height: 40,
   },
   TextInputStyle: {
     height: 80,
+    width: 200,
     fontSize: 20,
     textAlign: 'center',
   },
-  buttons: {
-    alignSelf: 'center',
-    width: 300,
-    height: 100,
-  },
-  labels: {
-    height: 20,
+  Button: {
+    height: 80,
+    width: 200,
   },
 })
 
