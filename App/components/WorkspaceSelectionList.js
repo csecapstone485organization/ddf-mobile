@@ -4,14 +4,9 @@ import { Actions } from 'react-native-router-flux'
 import WorkspaceRow from './WorkspaceRow'
 import store from '../store/store'
 
-
 const WorkspaceSelectionList = ({ onWorkspaceSelection, listData }) => {
   const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
   const dataSource = ds.cloneWithRows(listData)
-
-  contextTypes = {
-    routes: PropTypes.object.isRequired,
-  };
 
   const onPress = (label) => {
     Actions.querySelection()

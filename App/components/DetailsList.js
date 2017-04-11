@@ -5,8 +5,12 @@ import DetailRow from './DetailRow'
 import store from '../store/store'
 
 
-const DetailsList = () => {
+const DetailsList = ({selectedResultId, selectedResult}) => {
+  console.log(store.getState())
+  console.log(selectedResult)
   const listData = [
+    {label:'Selected Result', info: selectedResultId},
+    {label:'Result as String', info: JSON.stringify(selectedResult)},
     {label:'Name', info: 'burrito'},
     {label:'Longitude', info: '22.8'},
     {label:'Latitude', info: '63.1'},

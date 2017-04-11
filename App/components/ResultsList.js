@@ -4,10 +4,14 @@ import { Actions } from 'react-native-router-flux'
 import ResultsRow from '../components/ResultsRow'
 import store from '../store/store'
 
-const ResultsList = ({ listData }) => {
-
+const ResultsList = ({ onResultSelection, listData }) => {
   const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
   const dataSource = ds.cloneWithRows(listData)
+
+  const onPress = (result) => {
+    Actions.detailsPage()
+    onResultSelection(result.id);
+  }
 
   return(
     <View style={styles.container}>
@@ -16,6 +20,7 @@ const ResultsList = ({ listData }) => {
         renderRow={
           (rowData) =>
           <ResultsRow
+            onPress={() => onPress(rowData)}
             {...rowData}
           />}
         />

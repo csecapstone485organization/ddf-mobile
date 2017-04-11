@@ -48,13 +48,12 @@ function results(state = {
       });
     case RECEIVE_RESULTS:
       return Object.assign({}, state,
-        {
+      {
         isFetching: false,
         didInvalidate: false,
         results: action.results,
         lastUpdated: action.receivedAt
-      })
-
+      });
     default:
       return state;
   }

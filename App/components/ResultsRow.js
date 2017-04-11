@@ -16,7 +16,8 @@ const styles = StyleSheet.create({
 
 const ResultsRow = (props) => (
   <View style={styles.container}>
-    <Text style={styles.text}>
+    <Text style={styles.text}
+      onPress={props.onPress} >
       {props.title}
     </Text>
   </View>
