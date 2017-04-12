@@ -4,6 +4,7 @@ import MapResults from '../components/MapResults'
 
 const mapStateToProps = (state) => {
   return {
+    mapData: state.results.results
   }
 }
 
