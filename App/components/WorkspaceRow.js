@@ -1,26 +1,48 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { TouchableWithoutFeedback, View, Text, StyleSheet, Image } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 12,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: 'column',
+    borderColor: '#E3E3E3',
+    borderBottomWidth: 1
   },
-  text: {
-    marginLeft: 12,
-    fontSize: 16,
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  title: {
+    fontSize: 16
+  },
+  desc: {
+    fontSize: 10
   }
 });
 
+function getTimeString(date)
+{
+  return date.toLocaleDateString() + ' ' + date.toLocaleTimeString()
+}
+
 const WorkspaceRow = (props) => (
+  <TouchableWithoutFeedback
+      onPress={props.onPress}>
   <View style={styles.container}>
-    <Text style={styles.text}
-      onPress={props.onPress} >
-      {props.label}
+    <Text style={styles.title}>
+      {props.title}
     </Text>
+    <View style={styles.footer}>
+      <Text style={styles.desc}>
+        {props.queries} queries
+      </Text>
+      <Text style={styles.desc}>
+        {getTimeString(new Date(props.modified))}
+      </Text>
+    </View>
   </View>
+  </TouchableWithoutFeedback>
 );
 
 export default WorkspaceRow;

@@ -20,7 +20,7 @@ const WorkspaceSelectionList = ({ onWorkspaceSelection, listData }) => {
         renderRow={
           (rowData) =>
           <WorkspaceRow
-            onPress={() => onPress(rowData.label)}
+            onPress={() => onPress(rowData.title)}
             {...rowData}
           />}
         />
