@@ -13,7 +13,7 @@ const LoginPrompt = (props: Props) => {
           style={styles.image}
       />
       <TextInput style={styles.textBox} placeholder={'Username'}/>
-      <TextInput style={styles.textBox} placeholder={'Password'}/>
+      <TextInput secureTextEntry={true} style={styles.textBox} placeholder={'Password'}/>
       <View style={styles.button}>
         <Button onPress={() => nextScreen()}
           title='Login'
