@@ -7,11 +7,12 @@
     "test": "jest"
   },
   "dependencies": {
+    "native-base": "2.1.0",
     "react": "~15.4.1",
     "react-native": "0.42.0",
     "react-native-chooser": "^1.5.0",
     "react-native-maps": "^0.13.0",
-    "react-native-router-flux": "^3.38.0",
+    "react-native-router-flux": "3.38.0",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",
     "redux-form": "^6.5.0",
