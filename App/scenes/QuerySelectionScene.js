@@ -9,9 +9,7 @@ class QuerySelectionScreen extends Component<void, void, void> {
   static renderRightButton = (props) => {
         return (
             <TouchableOpacity onPress={() => Actions.editQuery()} style={
-              {
-                paddingTop: 3
-              }
+              {paddingTop: 3}
             }>
                 <Text style={{color:'#414770'}}>New</Text>
             </TouchableOpacity>

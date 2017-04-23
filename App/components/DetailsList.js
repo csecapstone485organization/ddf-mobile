@@ -7,9 +7,6 @@ import store from '../store/store'
 
 export default class DetailsList extends Component {
   render() {
-    console.log(store.getState())
-    console.log(selectedResult)
-
     const selectedResult = this.props.selectedResult
     var listData = [
       {label:'Title: ', info: selectedResult.metacard.properties.title},
