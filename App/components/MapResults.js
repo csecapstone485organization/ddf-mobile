@@ -75,7 +75,7 @@ const MapResults = ({ onResultSelection, mapData }) => {
       // onResultSelection(result.id);
       props.onResultSelection(result);
     }
-    
+
     return (
       <MapView.Marker
         key={props.id}
@@ -117,6 +117,7 @@ const MapResults = ({ onResultSelection, mapData }) => {
         bottom: 0,
         justifyContent: 'flex-end',
         alignItems: 'center',
+        marginBottom:40
       },
       map: {
         width: width,

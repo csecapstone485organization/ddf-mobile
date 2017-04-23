@@ -7,10 +7,11 @@ const styles = StyleSheet.create({
     padding: 12,
     flexDirection: 'row',
     alignItems: 'flex-end',
-    borderBottomWidth: 1,
+    borderColor: '#E3E3E3',
+    borderBottomWidth: 1
   },
   text: {
-    marginLeft: 12,
+    marginLeft: 6,
     fontSize: 16,
   },
   middle: {

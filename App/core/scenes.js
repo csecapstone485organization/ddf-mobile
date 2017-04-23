@@ -18,7 +18,7 @@ const style = StyleSheet.create({
             opacity: 1
         },
         padForNavBar: {
-          paddingTop: 64
+          paddingTop: 60
         }
 });
 

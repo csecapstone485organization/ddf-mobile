@@ -38,7 +38,8 @@ const ResultsList = ({ onResultSelection, listData }) => {
       alignSelf: 'stretch'
     },
     container: {
-      flex: 1
+      flex: 1,
+      marginBottom:40
     }
   });
 
