@@ -3,14 +3,20 @@ import { View, ListView, StyleSheet } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import ResultsRow from '../components/ResultsRow'
 import store from '../store/store'
+import { cql_TEST_RESULTS } from '../constants/MockData.js'
 
 const ResultsList = ({ onResultSelection, listData }) => {
+
+  // TODO: Uncomment to prevent listData from loading from mock data
+  listData = cql_TEST_RESULTS.results
+  console.log(listData)
   const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
   const dataSource = ds.cloneWithRows(listData)
+  console.log(dataSource)
 
   const onPress = (result) => {
     Actions.detailsPage()
-    onResultSelection(result.id);
+    onResultSelection(result);
   }
 
   return(
@@ -21,7 +27,7 @@ const ResultsList = ({ onResultSelection, listData }) => {
           (rowData) =>
           <ResultsRow
             onPress={() => onPress(rowData)}
-            {...rowData}
+            rowData={rowData}
           />}
         />
       </View>

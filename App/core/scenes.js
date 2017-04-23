@@ -34,7 +34,9 @@ const scenes = Actions.create(
     <Scene key="workspaceSelection" component={WorkspaceSelectionScene}
       title="Workspace Selection" sceneStyle={style.padForNavBar} />
     <Scene key="querySelection" component={QuerySelectionScene}
-      title="Query Selection" sceneStyle={style.padForNavBar} />
+      title="Query Selection" sceneStyle={style.padForNavBar}
+      onRight={ () => {} }
+     />
     <Scene key="launch" component={LaunchScene} title="Launch" sceneStyle={style.padForNavBar} />
     <Scene key="editQuery" component={EditQueryScene} title="Edit Query" sceneStyle={style.padForNavBar} />
     <Scene key="detailsPage" component={DetailsPageScene} title="Details" sceneStyle={style.padForNavBar} />
