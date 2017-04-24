@@ -2,10 +2,22 @@ import React, { PropTypes, Component } from 'react'
 import { View, ListView, StyleSheet } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import DetailRow from './DetailRow'
+import DetailTimeRow from './DetailTimeRow'
 import store from '../store/store'
 
 
 export default class DetailsList extends Component {
+  getRowComponent(rowData) {
+    if (rowData.isTime) {
+      return <DetailTimeRow
+                {...rowData}
+              />
+    }
+    return <DetailRow
+      {...rowData}
+    />
+  }
+
   render() {
     console.log(store.getState())
     console.log(selectedResult)
@@ -13,8 +25,8 @@ export default class DetailsList extends Component {
     const selectedResult = this.props.selectedResult
     var listData = [
       {label:'Title: ', info: selectedResult.metacard.properties.title},
-      {label:'Created: ', info: selectedResult.metacard.properties.created},
-      {label:'Modified: ', info: selectedResult.metacard.properties.modified},
+      {label:'Created: ', info: selectedResult.metacard.properties.created, isTime: true},
+      {label:'Modified: ', info: selectedResult.metacard.properties.modified, isTime: true},
       {label:'ID: ', info: selectedResult.metacard.properties.id},
     ]
 
@@ -36,11 +48,7 @@ export default class DetailsList extends Component {
       <View style={styles.container}>
         <ListView
           dataSource={dataSource}
-          renderRow={
-            (rowData) =>
-            <DetailRow
-              {...rowData}
-            />}
+          renderRow={(rowData) => this.getRowComponent(rowData)}
           />
         </View>
       )

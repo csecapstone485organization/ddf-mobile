@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
+import TimeDisplayer from '../components/TimeDisplayer';
 
 const styles = StyleSheet.create({
   container: {
@@ -18,16 +19,14 @@ const styles = StyleSheet.create({
   }
 });
 
-const DetailRow = (props) => (
+const DetailTimeRow = (props) => (
   <View style={styles.container}>
     <Text style={styles.text}>
       {props.label}
     </Text>
     <View style={styles.middle} />
-    <Text style={styles.text}>
-      {props.info}
-    </Text>
+    <TimeDisplayer style={styles.text} time={props.info}/>
   </View>
 );
 
-export default DetailRow;
+export default DetailTimeRow;
