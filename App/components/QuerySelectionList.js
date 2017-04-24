@@ -7,10 +7,10 @@ import store from '../store/store'
 
 const QuerySelectionList = ({ onQuerySelection }) => {
   const listData = [
-    {label:'Query 1', lastRan: new Date(2017, 3, 19, 1, 40, 23, 42)},
-    {label:'Query 2', lastRan: new Date(2017, 3, 19, 1, 39, 58, 693)},
-    {label:'Query 3', lastRan: new Date(2017, 3, 18, 23, 7, 12, 574)},
-    {label:'Query 4', lastRan: new Date(2014, 7, 12, 8, 12, 2, 810)},
+    {label:'Arizona', lastRan: new Date(2017, 3, 19, 1, 40, 23, 42)},
+    {label:'Reagan', lastRan: new Date(2017, 3, 19, 1, 39, 58, 693)},
+    {label:'Airspace', lastRan: new Date(2017, 3, 18, 23, 7, 12, 574)},
+    {label:'Treaties', lastRan: new Date(2014, 7, 12, 8, 12, 2, 810)},
   ]
 
   const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
