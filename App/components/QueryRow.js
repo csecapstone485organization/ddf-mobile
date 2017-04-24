@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableWithoutFeedback } from 'react-native';
+import TimeDisplayer from '../components/TimeDisplayer'
 
 const styles = StyleSheet.create({
   container: {
@@ -23,19 +24,16 @@ const styles = StyleSheet.create({
 });
 
 const QueryRow = (props) => (
-  <View style={styles.container}>
-    <Text style={styles.text}
-      onPress={props.onPress}
-      >
-      {props.label}
-    </Text>
-    <View style={styles.middle} />
-    <Text style={styles.lastRan}
-      onPress={props.onPress}
-      >
-      Last ran: {props.lastRan.toUTCString()}
-    </Text>
-  </View>
+  <TouchableWithoutFeedback
+      onPress={props.onPress}>
+    <View style={styles.container}>
+      <Text style={styles.text}>
+        {props.label}
+      </Text>
+      <View style={styles.middle} />
+      <TimeDisplayer style={styles.lastRan} time={props.lastRan}/>
+    </View>
+  </TouchableWithoutFeedback>
 );
 
 export default QueryRow;

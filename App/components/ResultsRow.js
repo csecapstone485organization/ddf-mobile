@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import TimeDisplayer from '../components/TimeDisplayer'
 
 const styles = StyleSheet.create({
   container: {
@@ -36,9 +37,7 @@ export default class ResultsRow extends Component {
             <Text style={styles.desc}>
               {this.props.rowData.metacard.type}
             </Text>
-            <Text style={styles.desc}>
-              {this.props.rowData.metacard.properties.created}
-            </Text>
+            <TimeDisplayer style={styles.desc} time={this.props.rowData.metacard.properties.created}/>
           </View>
         </View>
       </TouchableWithoutFeedback>
