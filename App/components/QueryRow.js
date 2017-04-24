@@ -6,8 +6,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 12,
-    flexDirection: 'row',
-    alignItems: 'flex-end',
+    flexDirection: 'column',
     borderColor: '#E3E3E3',
     borderBottomWidth: 1
   },
@@ -18,8 +17,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   lastRan: {
-    fontSize: 12,
-  }
+    fontSize: 10,
+  },
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
 });
 
 const QueryRow = (props) => (
@@ -29,8 +32,10 @@ const QueryRow = (props) => (
       <Text style={styles.text}>
         {props.label}
       </Text>
-      <View style={styles.middle} />
-      <TimeDisplayer style={styles.lastRan} time={props.lastRan}/>
+      <View style={styles.footer}>
+        <View style={styles.middle}/>
+        <TimeDisplayer style={styles.lastRan} time={props.lastRan}/>
+      </View>
     </View>
   </TouchableWithoutFeedback>
 );
