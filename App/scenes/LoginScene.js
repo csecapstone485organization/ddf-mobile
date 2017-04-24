@@ -6,7 +6,7 @@ import LoginContainer from '../containers/LoginContainer'
 export default class LoginScene extends Component {
   render() {
     return (
-      <LoginContainer nextScreen={Actions.workspaceSelection}/>
+      <LoginContainer nextScreen={()=>{Actions.workspaceSelection({hideNavBar:false})}}/>
     )
   }
 }

@@ -30,7 +30,7 @@ const TabIcon = ({ selected, title }) => {
 
 const scenes = Actions.create(
   <Scene key="root">
-    <Scene key="login" component={LoginScene} title="Login" sceneStyle={style.padForNavBar} />
+    <Scene key="login" component={LoginScene} title="Login" hideNavBar />
     <Scene key="workspaceSelection" component={WorkspaceSelectionScene}
       title="Workspace Selection" sceneStyle={style.padForNavBar} />
     <Scene key="querySelection" component={QuerySelectionScene}
