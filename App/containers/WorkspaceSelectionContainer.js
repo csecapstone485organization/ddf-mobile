@@ -3,10 +3,10 @@ import { selectWorkspace } from '../actions/actions'
 import WorkspaceSelectionList from '../components/WorkspaceSelectionList'
 
 const listData = [
-  {title:'Workspace 1', modified:1490216837867, queries:4},
-  {title:'Workspace 2', modified:1490216827866, queries:4},
-  {title:'Workspace 3', modified:1490216817865, queries:4},
-  {title:'Workspace 4', modified:1490216807864, queries:40000},
+  {title:'UFO Sightings', modified:1490216837867, queries:4},
+  {title:'Cartel Hideouts', modified:1490216827866, queries:4},
+  {title:'Military Bases', modified:1490216817865, queries:4},
+  {title:'Pictures of Cats', modified:1490216807864, queries:40000},
 ]
 
 const mapStateToProps = (state) => {
