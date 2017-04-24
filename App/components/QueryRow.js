@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1
   },
   text: {
-    marginLeft: 6,
     fontSize: 16,
   },
   middle: {
