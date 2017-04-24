@@ -10,13 +10,13 @@
     "moment": "^2.18.1",
     "react": "~15.4.1",
     "react-native": "0.42.0",
-    "react-native-chooser": "^1.5.0",
     "react-native-maps": "^0.13.0",
     "react-native-router-flux": "3.38.0",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",
     "redux-form": "^6.5.0",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "tcomb-form-native": "^0.6.7"
   },
   "devDependencies": {
     "babel-jest": "19.0.0",

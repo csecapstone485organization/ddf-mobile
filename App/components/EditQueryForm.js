@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import { Button, View, Text, TextInput, StyleSheet } from 'react-native'
-import { Field, reduxForm } from 'redux-form'
+import { Button, ScrollView, View, Text, TextInput, StyleSheet, TouchableHighlight } from 'react-native'
 import { Select, Option } from "react-native-chooser"
+import t from 'tcomb-form-native'
 import store from '../store/store'
 
 type Props = {
@@ -11,8 +11,95 @@ type Props = {
 }
 
 class EditQueryForm extends Component {
+  constructor(props) {
+    super(props)
+    // Enums for pickers
+    const timeRangeMarker = t.enums({
+      "Any":"Any",
+      "After":"After",
+      "Before":"Before",
+      "Between":"Between"
+    });
+
+    const Federation = t.enums({
+      "All Sources":"All Sources",
+      "Specific Sources":"Specific Sources",
+      "None":"None"
+    });
+
+    var fields = {
+      queryText: t.String,
+      matchCase: t.Boolean,
+      timeRangeMarker: timeRangeMarker,
+      locationSearch: t.Boolean,
+      type: t.maybe(t.String),
+      federation: Federation
+    }
+
+    var Query = t.struct(fields);
+
+    const value={
+      timeRangeMarker: "Any",
+      federation:"All Sources"
+    }
+    this.state = {
+      value,
+      type: Query,
+      fields
+    }
+  }
+
+  // returns the suitable type based on the form value
+  getType(value) {
+    if (value.country === 'IT') {
+      return t.struct({
+        country: Country,
+        rememberMe: t.Boolean
+      });
+    } else if (value.country === 'US') {
+      return t.struct({
+        country: Country,
+        name: t.String
+      });
+    } else {
+      return t.struct({
+        country: Country
+      });
+    }
+  }
+
+  createFormFromState(state, values) {
+    newForm = {}
+    newForm.queryText = state.fields.queryText
+    newForm.matchCase = state.fields.matchCase
+    newForm.timeRangeMarker= state.fields.timeRangeMarker
+    if(values.timeRangeMarker === "After" || values.timeRangeMarker === "Between") {
+      newForm.timeRangeAfter = t.maybe(t.Date)
+    }
+    if(values.timeRangeMarker === "Before" || values.timeRangeMarker === "Between") {
+      newForm.timeRangeBefore = t.maybe(t.Date)
+    }
+    newForm.locationSearch = state.fields.locationSearch
+    if(values.locationSearch === true) {
+      newForm.longitude = t.maybe(t.Number)
+      newForm.langitude = t.maybe(t.Number)
+    }
+    newForm.type = state.fields.type
+    newForm.federation = state.fields.federation
+
+    return t.struct(newForm)
+  }
+
+  onChange(value) {
+    var type = {};
+    type = this.createFormFromState(this.state, value);
+    this.setState({ ...this.state, value, type });
+  }
 
   render() {
+    var Form = t.form.Form
+    var options = {}; // optional rendering options (see documentation)
+
     const { fetchResults, nextScreen } = this.props
 
     const onPress = () => {
@@ -27,63 +114,20 @@ class EditQueryForm extends Component {
       nextScreen();
     }
 
-
     return (
-      <View style={styles.Container}>
-        <TextInput style={styles.TextInputStyle} placeholder={'Query Text'}/>
-        <Select
-          //onSelect = {this.onSelect.bind(this)}
-          defaultText  = "Match Case?"
-          style = {styles.Select}
-          textStyle = {{}}
-          backdropStyle  = {{backgroundColor : "#d3d5d6"}}
-          optionListStyle = {{backgroundColor : "#F5FCFF"}}>
-          <Option value = "Yes">Yes</Option>
-          <Option value = "No">No</Option>
-        </Select>
-        <View style={{height: 50}} />
-        <Select
-          //onSelect = {this.onSelect.bind(this)}
-          defaultText  = "Time Range?"
-          style = {styles.Select}
-          textStyle = {{}}
-          backdropStyle  = {{backgroundColor : "#d3d5d6"}}
-          optionListStyle = {{backgroundColor : "#F5FCFF"}}>
-          <Option value = "Any">Any</Option>
-          <Option value = "After">After</Option>
-          <Option value = "Before">Before</Option>
-          <Option value = "Between">Between</Option>
-        </Select>
-        <View style={{height: 50}} />
-        <Select
-          //onSelect = {this.onSelect.bind(this)}
-          defaultText  = "Located?"
-          style = {styles.Select}
-          textStyle = {{}}
-          backdropStyle  = {{backgroundColor : "#d3d5d6"}}
-          optionListStyle = {{backgroundColor : "#F5FCFF"}}>
-          <Option value = "Anywhere">Anywhere</Option>
-          <Option value = "Somewhere Specific">Somewhere Specific</Option>
-        </Select>
-        <View style={{height: 50}} />
-        <Select
-          //onSelect = {this.onSelect.bind(this)}
-          defaultText  = "Match Types?"
-          style = {styles.Select}
-          textStyle = {{}}
-          backdropStyle  = {{backgroundColor : "#d3d5d6"}}
-          optionListStyle = {{backgroundColor : "#F5FCFF"}}>
-          <Option value = "Any">Any</Option>
-          <Option value = "Specific">Specific</Option>
-        </Select>
-        <View style={{height: 50}} />
-        <View style={styles.Button}>
-          <Button onPress={onPress}
-            title='Save'
-            accessibilityLabel='Submit'>
-            Submit
-          </Button>
-        </View>
+      <View style={styles.container}>
+        <ScrollView>
+        <Form
+          ref="form"
+          type={this.state.type}
+          options={options}
+          onChange={this.onChange.bind(this)}
+          value={this.state.value}
+        />
+        <TouchableHighlight style={styles.button} onPress={onPress} underlayColor='#99d9f4'>
+          <Text style={styles.buttonText}>Save</Text>
+        </TouchableHighlight>
+      </ScrollView>
       </View>
     )
   }
@@ -91,29 +135,31 @@ class EditQueryForm extends Component {
 
 
 const styles = StyleSheet.create({
-  Container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+  container: {
+    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: '#ffffff',
   },
-  Select: {
-    height: 40,
+  title: {
+    fontSize: 30,
+    alignSelf: 'center',
+    marginBottom: 30
   },
-  TextInputStyle: {
-    height: 80,
-    width: 200,
-    fontSize: 20,
-    textAlign: 'center',
+  buttonText: {
+    fontSize: 18,
+    color: 'white',
+    alignSelf: 'center'
   },
-  Button: {
-    height: 80,
-    width: 200,
-  },
+  button: {
+    height: 36,
+    backgroundColor: '#48BBEC',
+    borderColor: '#48BBEC',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  }
 })
-
-EditQueryForm = reduxForm({
-  form: 'queryForm' // a unique name for this form
-})(EditQueryForm);
 
 export default EditQueryForm

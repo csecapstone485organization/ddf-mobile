@@ -6,7 +6,6 @@ import {
   REQUEST_QUERIES, RECEIVE_QUERIES,
   SELECT_QUERY
 } from '../actions/actions'
-import { reducer as form } from 'redux-form'
 
 function selectedQuery(state = {}, action) {
   switch (action.type) {
@@ -65,7 +64,6 @@ const rootReducer = combineReducers({
   selectedWorkspace,
   selectedResult,
   results,
-  form
 })
 
 export default rootReducer
