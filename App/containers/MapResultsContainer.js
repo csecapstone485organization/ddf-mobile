@@ -1,6 +1,19 @@
 import { connect } from 'react-redux'
 import { selectResult } from '../actions/actions'
 import MapResults from '../components/MapResults'
+import { cql_TEST_RESULTS } from '../constants/MockData.js'
+
+const getResultForId = (id) => {
+  let selection = {}
+  for(result of cql_TEST_RESULTS.results) {
+    console.log(result)
+    if (result.metacard.properties.title === id) {
+      selection = result
+    }
+  }
+  console.log(selection)
+  return selection
+}
 
 const mapStateToProps = (state) => {
   return {
@@ -10,7 +23,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onResultSelection: (result) => {
+    onResultSelection: (resultId) => {
+      console.log(resultId)
+      let result = getResultForId(resultId)
       dispatch(selectResult(result))
     }
   }

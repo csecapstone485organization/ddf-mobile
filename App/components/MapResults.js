@@ -8,11 +8,30 @@ var {height, width} = Dimensions.get('window')
 
 
 export default class MapResults extends Component {
+  constructor() {
+    super()
+    this.mapRef = null
+    this.coordinateList = []
+  }
+
+  componentDidMount() {
+    let coordinates = []
+    for (coordinate of this.coordinateList) {
+      coordinates.push(coordinate.latlng);
+    }
+    this.mapRef.fitToCoordinates(
+      coordinates,
+      {
+         edgePadding: { top: 10, right: 10, bottom: 10, left: 10 },
+         animated: true
+      }
+    );
+  }
+
   render() {
-    const coordinateList = []
     for(result of cql_TEST_RESULTS.results) {
-      if(result.metacard.geometry !== null) {
-        coordinateList.push(
+      if(result.metacard.geometry !== null && result.properties !== null) {
+        this.coordinateList.push(
           {
             latlng: {
               latitude: result.metacard.geometry.coordinates[1],
@@ -26,11 +45,11 @@ export default class MapResults extends Component {
     }
 
     const MapMarker = (props) => {
-      const onPress = (result) => {
+      const onPress = (resultId) => {
+        this.props.onResultSelection(resultId);
         Actions.detailsPage();
         // TODO: Replace when actual result object passed in from DDF
         // onResultSelection(result.id);
-        this.props.onResultSelection(result);
       }
 
       return (
@@ -42,7 +61,7 @@ export default class MapResults extends Component {
           >
             <MapView.Callout tooltip style={styles.callout}>
               <View style={[styles.calloutContainer, props.style]}>
-                <TouchableHighlight onPress={() => onPress(props.id)} underlayColor='transparent'>
+                <TouchableHighlight onPress={() => onPress(props.marker.title)} underlayColor='transparent'>
                   <View style={styles.bubble}>
                     <View style={styles.amount}>
                       <Text style={styles.calloutHeaderText} numberOfLines={1} ellipsizeMode={'tail'}>{props.marker.title}</Text>
@@ -140,14 +159,8 @@ export default class MapResults extends Component {
       });
 
       const mapData = {
-        region: {
-          latitude: 33.420270,
-          longitude: -111.932339,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        },
         //List of markers
-        markers:coordinateList
+        markers:this.coordinateList
       }
 
       return(
@@ -158,7 +171,7 @@ export default class MapResults extends Component {
             mapType     change string "standard", "hybird", "satellite", and "terrain"
 
             */
-            mapType="hybrid"
+            mapType="standard"
             showsUserLocation={true}
             followUserLocation={false}
             showsCompass={false}
@@ -166,6 +179,7 @@ export default class MapResults extends Component {
 
             //Required to render map
             region={mapData.region}
+            ref={(ref) => {this.mapRef = ref}}
             >
 
               {mapData.markers.map((marker, i) => (
