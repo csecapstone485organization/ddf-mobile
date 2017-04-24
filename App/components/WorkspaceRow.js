@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableWithoutFeedback, View, Text, StyleSheet, Image } from 'react-native';
+import TimeDisplayer from '../components/TimeDisplayer';
 
 const styles = StyleSheet.create({
   container: {
@@ -21,11 +22,6 @@ const styles = StyleSheet.create({
   }
 });
 
-function getTimeString(date)
-{
-  return date.toLocaleDateString() + ' ' + date.toLocaleTimeString()
-}
-
 const WorkspaceRow = (props) => (
   <TouchableWithoutFeedback
       onPress={props.onPress}>
@@ -37,9 +33,7 @@ const WorkspaceRow = (props) => (
       <Text style={styles.desc}>
         {props.queries} queries
       </Text>
-      <Text style={styles.desc}>
-        {getTimeString(new Date(props.modified))}
-      </Text>
+      <TimeDisplayer style={styles.desc} time={props.modified}/>
     </View>
   </View>
   </TouchableWithoutFeedback>
