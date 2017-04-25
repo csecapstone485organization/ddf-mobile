@@ -19,13 +19,14 @@ export default class MapResults extends Component {
     for (coordinate of this.coordinateList) {
       coordinates.push(coordinate.latlng);
     }
-    this.mapRef.fitToCoordinates(
+    var tempMapRef = this.mapRef;
+    setTimeout(function(){tempMapRef.fitToCoordinates(
       coordinates,
       {
          edgePadding: { top: 10, right: 10, bottom: 10, left: 10 },
          animated: true
       }
-    );
+    );}, 0);
   }
 
   render() {
