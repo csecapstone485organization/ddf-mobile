@@ -50,3 +50,9 @@ File structure
 In order to allow RN to access DDF endpoints with self-signed certs, you'll need to make some edits to the React Native XCode project as stated here: http://stackoverflow.com/questions/36289125/react-native-fetch-from-https-server-with-self-signed-certificate
 
 This will get it working on iOS but will still present problems with Android.
+
+## Known issues and notes
+
+* Static assets - Static assets must be loaded into XCode and Android Studio to be rendered dynamically on mobile. The URI is currently hardcoded to the resources/images folder.
+* Google Maps error - There appears to be an error coming from react-native-maps's fitToCoordinates API, where adding padding to how far the map zooms out to fit the coordinates may sometimes cause a crash on Android. Can either remove the padding option or open a ticket. This does not affect iOS.
+* Mock data - Application currently loads from the MockData file. There are several TODO statements in the pertinent component files that will all you to load from Actions (asynchronously) instead of MockData by uncommenting certain lines, however, since RN doesn't play well with DDF's unsigned certs, YMMV. There's an HTTP call in Actions that calls Reddit's API for test purposes. You can plug in the DDF endpoint there.
