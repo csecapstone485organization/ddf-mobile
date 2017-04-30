@@ -26,7 +26,7 @@ export default class MapResults extends Component {
          edgePadding: { top: 10, right: 10, bottom: 10, left: 10 },
          animated: true
       }
-    );}, 0);
+    );}, 1000);
   }
 
   render() {
