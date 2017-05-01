@@ -82,7 +82,7 @@ class EditQueryForm extends Component {
     newForm.locationSearch = state.fields.locationSearch
     if(values.locationSearch === true) {
       newForm.longitude = t.maybe(t.Number)
-      newForm.langitude = t.maybe(t.Number)
+      newForm.latitude = t.maybe(t.Number)
     }
     newForm.type = state.fields.type
     newForm.federation = state.fields.federation
